@@ -15,11 +15,11 @@ class Node {
 
 
 // Create a LinkedList class to manage the list
-public class LinkedList {
+public class SinglyLinkedList {
 
 	private Node head;
 	
-	public LinkedList() {
+	public SinglyLinkedList() {
 		this.head = null;
 	}
     
@@ -127,6 +127,42 @@ public class LinkedList {
     	}
     }
     
+    // Method to remove a node from a specific index
+    public void remove(int index) throws IndexOutOfBoundsException {
+    	// empty list
+    	if(head == null || index < 0) {
+    		throw new IndexOutOfBoundsException();
+    	}
+    	
+    	// having single element
+    	if(head.next == null && index == 0) {
+    		head = null;
+    		return;
+    	}
+    	
+    	// removing the first index
+    	if(index == 0) {
+    		head = head.next;
+    		return;
+    	}
+    	
+    	try {
+    		Node current = head;
+    		int count = 0;
+    		while(count < index-1) {
+    			current = current.next;
+    			count++;
+    		}
+    		if(current.next.next != null) {
+    			current.next = current.next.next;
+    		}else {
+    			current.next = null;
+    		}
+    	}catch(Exception e) {
+    		throw new IndexOutOfBoundsException();
+    	}
+    }
+    
     
     // Method to find the index of an element
     public int indexOf(int element) {
@@ -140,7 +176,6 @@ public class LinkedList {
     		}
     		current = current.next;
     		index++;
-    		
     	}
     	
     	return -1;
@@ -181,7 +216,7 @@ public class LinkedList {
 
 
 	public static void main(String[] args) {
-		LinkedList myLinkedList = new LinkedList();
+		SinglyLinkedList myLinkedList = new SinglyLinkedList();
 		
 // 		Without using the methods
 
@@ -211,7 +246,7 @@ public class LinkedList {
 		myLinkedList.add(4, 25);
 		myLinkedList.add(0, 3);
 //		myLinkedList.add(10, 200); // IndexOutOfBoundsException
-		System.out.print("Adding element using add() : ");
+		System.out.print("Adding element using add(index) : ");
 		myLinkedList.printLinkedList();
 		System.out.println();
 		
@@ -231,6 +266,11 @@ public class LinkedList {
 		myLinkedList.printLinkedList();
 		System.out.println();
 		
+		myLinkedList.remove(4);
+		System.out.print("Removing element using remove(index) : ");
+		myLinkedList.printLinkedList();
+		System.out.println();
+		
 		int result = myLinkedList.indexOf(30);
 		System.out.println("Index of 30 : "+ result);
 		int result2 = myLinkedList.lastIndexOf(30);
@@ -241,10 +281,8 @@ public class LinkedList {
 		System.out.println("Last index of 70 : "+ result4);
 		
 		System.out.println("Size of the LinkedList : "+ myLinkedList.size());
-		
+	
 	}
-	
-	
 }
 
 
