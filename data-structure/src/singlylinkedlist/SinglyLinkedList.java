@@ -1,7 +1,9 @@
-package linkedlist;
+package singlylinkedlist;
 
 
 // Create a Node class to represent individual elements of the list
+// This Node class can store only integer data type
+
 class Node {
 	
 	int data;
@@ -70,6 +72,10 @@ public class SinglyLinkedList {
     // Method to add a node to a specific index of the list
     public void add(int index, int data) throws IndexOutOfBoundsException {
     	try {
+    		if(index < 0) {
+    			System.out.println("Negative index provided.");;
+    		}
+    		
     		if(index == 0) {
         		addFirst(data);
         	}else {
@@ -213,6 +219,29 @@ public class SinglyLinkedList {
     	
     	return count;
     }
+    
+    // Deleting a specified node from the List
+    void deleteNode(Node nodeToDelete) {
+    	if(nodeToDelete == null || head == null) {
+    		return;
+    	}
+    	
+    	if(head == nodeToDelete) {
+    		head  = nodeToDelete.next;
+    		return;
+    	}
+    	
+    	Node current = head;
+    	
+    	while(current.next != null) {
+    		if(current.next == nodeToDelete) {
+    			current.next = nodeToDelete.next;
+    			nodeToDelete.next = null;
+    			return;
+    		}
+    		current = current.next;
+    	}
+    }
 
 
 	public static void main(String[] args) {
@@ -233,28 +262,30 @@ public class SinglyLinkedList {
 		myLinkedList.append(10);
 		myLinkedList.append(20);
 		myLinkedList.append(30);
+		myLinkedList.append(40);
+		myLinkedList.append(50);
 		System.out.print("Adding element using append() : ");
 		myLinkedList.printLinkedList();
 		System.out.println();
 		
-		myLinkedList.addFirst(1);
-		myLinkedList.addFirst(2);
+		myLinkedList.addFirst(40);;
 		System.out.print("Adding element using addFirst() : ");
 		myLinkedList.printLinkedList();
 		System.out.println();
 		
 		myLinkedList.add(4, 25);
-		myLinkedList.add(0, 3);
+//		myLinkedList.add(-10, 3);
 //		myLinkedList.add(10, 200); // IndexOutOfBoundsException
 		System.out.print("Adding element using add(index) : ");
 		myLinkedList.printLinkedList();
 		System.out.println();
 		
-		int[] arr = {30, 40, 50};
+		int[] arr = {40, 50};
 		myLinkedList.addAll(arr);
 		System.out.print("Adding elements using addAll() : ");
 		myLinkedList.printLinkedList();
 		System.out.println();
+		
 		
 		myLinkedList.removeFirst();
 		System.out.print("Removing element using removeFirst() : ");
@@ -266,23 +297,29 @@ public class SinglyLinkedList {
 		myLinkedList.printLinkedList();
 		System.out.println();
 		
-		myLinkedList.remove(4);
+		myLinkedList.remove(3);
 		System.out.print("Removing element using remove(index) : ");
 		myLinkedList.printLinkedList();
 		System.out.println();
 		
-		int result = myLinkedList.indexOf(30);
-		System.out.println("Index of 30 : "+ result);
-		int result2 = myLinkedList.lastIndexOf(30);
-		System.out.println("Last index of 30 : "+ result2);
+		int result = myLinkedList.indexOf(40);
+		System.out.println("Index of 40 : "+ result);
+		int result2 = myLinkedList.lastIndexOf(40);
+		System.out.println("Last index of 40 : "+ result2);
 		int result3 = myLinkedList.indexOf(70);
 		System.out.println("Index of 70 : "+ result3);
 		int result4 = myLinkedList.lastIndexOf(70);
 		System.out.println("Last index of 70 : "+ result4);
 		
 		System.out.println("Size of the LinkedList : "+ myLinkedList.size());
+		
+		System.out.print("Deleting a node using delete(node) : ");
+		myLinkedList.deleteNode(myLinkedList.head.next.next.next);
+//		myLinkedList.deleteNode(myLinkedList.head.next.next.next.next.next);
+		myLinkedList.printLinkedList();
 	
 	}
+
 }
 
 
