@@ -243,6 +243,44 @@ public class SinglyLinkedList {
     	}
     }
 
+    // Adding an element in a sorted order (ascending)
+    void addSorted(int data) {
+    	Node newNode = new Node(data);
+    	
+    	if(head == null) {
+    		head = newNode;
+    		return;
+    	}
+    	
+    	// new element is smaller than the first element
+    	if(newNode.data < head.data) {
+    		newNode.next = head;
+    		head = newNode;
+    		return;
+    	}
+    	    	
+    	Node current = head;
+    	// Traversing till the last second element
+    	while(current.next != null) {
+    		if(newNode.data > current.data && newNode.data < current.next.data) {
+    			newNode.next = current.next;
+    			current.next = newNode;
+    			return;
+    		}
+    		current = current.next;
+    	}
+    	// when the new element is the biggest (does not satisfied all the above cases
+    	current.next = newNode;
+    	
+    	// OR
+//    	Node current = head;
+//    	// Finding the element which is bigger than the new element
+//    	while(current.next != null && newNode.data > current.next.data) {
+//    		current = current.next;
+//    	}
+//    	newNode.next = current.next;
+//		current.next = newNode;
+    }
 
 	public static void main(String[] args) {
 		SinglyLinkedList myLinkedList = new SinglyLinkedList();
