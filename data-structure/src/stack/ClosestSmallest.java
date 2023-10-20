@@ -4,6 +4,19 @@ import java.util.ArrayList;
 
 public class ClosestSmallest {
 	
+	/*
+	 *Algorithm :
+		1. Create an empty stack.
+		2. Loop through the elements of the array.
+		3. While the stack is not empty and the top element of the stack
+		  is greater than the current element, pop the stack.
+		4. If the stack is empty, print -1 as there is no smaller element
+		  to the left of the current element.
+		5. Else, print the top element of the stack as it is the closest
+		  and smallest element to the left of the current element.
+		6. Push the current element to the stack.
+	 */
+	
 	// Time complexity - O(n2)
 	static void closestSmallest(int[] arr) {
 		ArrayList<Integer> result = new ArrayList<Integer>();

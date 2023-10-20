@@ -2,6 +2,20 @@ package stack;
 
 public class StockSpan {
 	
+	/*
+	 Algorithm :
+		1. Create an empty stack.
+		2. Loop through the elements of the array.
+		3. While the stack is not empty and the element at the index stored
+		   at the top of the stack is smaller than the current element, pop the stack.
+		4. If the stack is empty, print i+1 as the span of the current element,
+	 	   as there is no greater element to its left.
+		5. Else, print i - the index stored at the top of the stack as the span
+		   of the current element, as it is the distance between the current element
+		   and the nearest greater element to its left.
+		6. Push the current index to the stack.
+	 */
+	
 	static void stockSpan(int[] arr) {
 		System.out.print("1 ");
 		
