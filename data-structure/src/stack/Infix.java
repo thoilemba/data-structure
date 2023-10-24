@@ -22,7 +22,7 @@ public class Infix {
 		
 		for(int i = 0; i < s.length(); i++) {
 			char ch = s.charAt(i);
-			if(Character.isLetter(ch)) {
+			if(Character.isLetter(ch) || Character.isDigit(ch)) {
 				result = result+ch;
 			}else if(ch == '(') {
 				stack.push(ch);
@@ -71,7 +71,7 @@ public class Infix {
 		
 		for(int i = 0; i < reverse.length(); i++) {
 			char ch = reverse.charAt(i);
-			if(Character.isLetter(ch)) {
+			if(Character.isLetter(ch)  || Character.isDigit(ch)) {
 				result = result+ch;
 			}else if(ch == '(') {
 				stack.push(ch);
@@ -105,21 +105,25 @@ public class Infix {
 	
 	public static void main(String[] args) throws StackUnderflowException {
 		
-		String s = "a+b*(c-d)/e";
-		System.out.println("Infix : "+ s);
-		System.out.println("Postfix : "+ toPostfix(s));
-		System.out.println("Prefix : "+ toPrefix(s));
-		System.out.println();
+//		String s = "a+b*(c-d)/e";
+//		System.out.println("Infix : "+ s);
+//		System.out.println("Postfix : "+ toPostfix(s));
+//		System.out.println("Prefix : "+ toPrefix(s));
+//		System.out.println();
+//		
+//		String s2 = "x+y*z/w+u";
+//		System.out.println("Infix : "+ s2);
+//		System.out.println("Postfix : "+ toPostfix(s2));
+//		System.out.println("Prefix : "+ toPrefix(s2));
+//		System.out.println();
 		
-		String s2 = "x+y*z/w+u";
-		System.out.println("Infix : "+ s2);
-		System.out.println("Postfix : "+ toPostfix(s2));
-		System.out.println("Prefix : "+ toPrefix(s2));
-		System.out.println();
+//		System.out.println("Infix : a*b/c");
+//		System.out.println("Postfix : "+ toPostfix("a*b/c"));
+//		System.out.println("Prefix : "+ toPrefix("a*b/c"));
 		
-		System.out.println("Infix : a*b/c");
-		System.out.println("Postfix : "+ toPostfix("a*b/c"));
-		System.out.println("Prefix : "+ toPrefix("a*b/c"));
+		System.out.println("Infix : 5*4/2");
+		System.out.println("Postfix : "+ toPostfix("5*4/2"));
+		System.out.println("Prefix : "+ toPrefix("5*4/2"));
 	
 	}
 

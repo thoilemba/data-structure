@@ -39,12 +39,12 @@ public class Stack {
 	Node top; // same as the head node in Linked List
 	int size;
 	
-	Stack(){
+	public Stack(){
 		this.top = null;
 		this.size = 0;
 	}
 	
-	void printStack() {
+	public void printStack() {
 		Node current = top;
 		while(current != null) {
 			System.out.print(current.data +" ");
@@ -54,7 +54,7 @@ public class Stack {
 	}
 	
 	// Adding element (same as addFirst in LinkedList)
-	void push(int data) {
+	public void push(int data) {
 		Node newNode = new Node(data);
 		newNode.next = top;
 		top = newNode;
@@ -62,7 +62,7 @@ public class Stack {
 	}
 	
 	// Removing element (same as removeFirst in LinkedList)
-	int pop() throws StackUnderflowException{
+	public int pop() throws StackUnderflowException{
 		if(top == null) {
 			throw new StackUnderflowException();
 		}
@@ -73,7 +73,7 @@ public class Stack {
 	}
 	
 	// Getting the top element
-	int peek() {
+	public int peek() {
 		if(top == null) {
 			return -1;
 		}else {
@@ -82,14 +82,14 @@ public class Stack {
 	}
 	
 	// Checking if the Stack is empty
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		return size == 0;
 		// OR
 		// return top == null;
 	}
 	
 	// Getting the size of the Stack
-	int size() {
+	public int size() {
 		int size = 0;
 		Node current = top;
 		while(current != null) {
@@ -121,9 +121,6 @@ public class Stack {
 		System.out.println("Size of the Stack : "+ stack.size());
 		System.out.println("Size of the Stack : "+ stack.size);
 		
-
-		
-
 	}
 
 }
