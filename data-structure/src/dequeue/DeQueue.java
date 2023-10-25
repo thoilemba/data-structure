@@ -35,12 +35,12 @@ public class DeQueue {
 	
 	
 	// Checking if the DeQueue is empty or not
-	boolean isEmpty(){
+	public boolean isEmpty(){
 		return size == 0;
 	}
 	
 	// Printing the DeQueue
-	void printDeQueue() {
+	public void printDeQueue() {
 		Node current = front;
 		while(current != null) {
 			System.out.print(current.data +" ");
@@ -50,7 +50,7 @@ public class DeQueue {
 	}
 	
 	// Printing the DeQueue in reverse order
-	void printReverseDeQueue() {
+	public void printReverseDeQueue() {
 		Node current = rear;
 		while(current != null) {
 			System.out.print(current.data +" ");
@@ -61,7 +61,7 @@ public class DeQueue {
 	
 	
 	// Adding element at the front of the DeQueue
-	void offerFirst(int data) {
+	public void offerFirst(int data) {
 		Node newNode = new Node(data);
 		
 		if(isEmpty()) {
@@ -77,7 +77,7 @@ public class DeQueue {
 	}
 	
 	// Adding element at the rear of the DeQueue
-	void offerLast(int data) {
+	public void offerLast(int data) {
 		Node newNode = new Node(data);
 		
 		if(isEmpty()) {
@@ -93,7 +93,7 @@ public class DeQueue {
 	}
 	
 	// Removing element from the front of the DeQueue
-	int pollFirst() {
+	public int pollFirst() {
 		if(isEmpty()) {
 			System.out.println("DeQueue is empty.");
 			return -1;
@@ -113,7 +113,7 @@ public class DeQueue {
 	}
 	
 	// Removing element from the rear of the DeQueue
-	int pollLast() {
+	public int pollLast() {
 		if(isEmpty()) {
 			System.out.println("DeQueue is empty.");
 			return -1;
@@ -133,7 +133,7 @@ public class DeQueue {
 	}
 	
 	// Retrieving the front element from the DeQueue
-	int peekFirst() {
+	public int peekFirst() {
 		if(isEmpty()) {
 			System.out.println("DeQueue is empty.");
 			return -1;
@@ -143,7 +143,7 @@ public class DeQueue {
 	}
 	
 	// Retrieving the rear element from the DeQueue
-	int peekLast() {
+	public int peekLast() {
 		if(isEmpty()) {
 			System.out.println("DeQueue is empty.");
 			return -1;
