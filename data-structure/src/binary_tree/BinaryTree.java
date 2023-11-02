@@ -1,6 +1,9 @@
 package binary_tree;
 
+import java.util.LinkedList;
 import java.util.Stack;
+import java.util.Queue;
+
 
 class Node {
 	
@@ -14,6 +17,8 @@ class Node {
 		this.right = null;
 	}
 }
+
+
 
 public class BinaryTree {
 	
@@ -119,6 +124,194 @@ public class BinaryTree {
             System.out.print(current.data + " "); // Process the node
         }
     }
+
+	public static int heightOfTree(Node root) {
+		if(root == null) {
+			return 0;
+		}else {
+			int leftHeight = heightOfTree(root.left);
+			int rightHeight = heightOfTree(root.right);
+			return (leftHeight > rightHeight) ? leftHeight+1 : rightHeight+1;
+		}
+	}
+	
+	// Printing all the nodes at distance k
+	public static void printNodes(Node root, int k) {
+		if(root != null) {
+			if(k == 0) {
+				System.out.print(root.data +" ");
+			}else {
+				printNodes(root.left, k-1);
+				printNodes(root.right, k-1);
+			}	
+		}
+	}
+	
+	// space complexity: maximum width of the tree (level having max no. of nodes)
+	public static void breadthFirst(Node root) {
+		
+		if(root == null) {
+			return;
+		}
+		
+		Queue<Node> q = new LinkedList<Node>();
+		
+		q.add(root);
+		while(!q.isEmpty()) {
+			Node current = q.poll();
+			System.out.print(current.data +" ");
+				
+			if(current.left != null) {
+				q.add(current.left);
+			}
+			if(current.right != null) {
+				q.add(current.right);
+			}
+		}
+	}
+	
+	// Number of total nodes in the tree
+	public static int size(Node root) {
+		if(root == null) {
+			return 0;
+		}else {
+			int leftSize = size(root.left);
+			int rightSize = size(root.right);
+			return leftSize+rightSize+1; // 1 is for each root node
+		}
+	}
+	
+	// Number of total nodes in the tree
+	public static int maximum(Node root) {
+		if(root == null) {
+			return Integer.MIN_VALUE;
+		}else {
+			
+			int leftMax = maximum(root.left);
+			int rightMax = maximum(root.right);
+			return Math.max(Math.max(leftMax, rightMax), root.data);
+			
+//			return root.data > ((leftMax > rightMax) ? leftMax : rightMax) ? root.data : ((leftMax > rightMax) ? leftMax : rightMax);
+//			if(root.data > leftMax && root.data > rightMax) {
+//				return root.data;
+//			}else if(leftMax > rightMax) {
+//				return leftMax;
+//			}else {
+//				return rightMax;
+//			}
+		}
+	}
+	
+	// Printing each level in new line
+	public static void levelOrder2(Node root) {
+		
+		if(root == null) {
+			return;
+		}
+		
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(root);
+		q.add(null); // adding null after the end of each level
+		
+		while(q.size() > 1) { // the last element remains null
+			Node current = q.poll();
+			if(current == null) {
+				System.out.println();
+				q.add(null);
+			}else {
+				System.out.print(current.data +" ");
+			
+				if(current.left != null) {
+					q.add(current.left);
+				}
+				if(current.right != null) {
+					q.add(current.right);
+				}
+			}
+		}
+	}
+	
+	// Printing each level in new line (another approach)
+	public static void levelOrder3(Node root) {
+		
+		if(root == null) {
+			return;
+		}
+		
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(root);
+		
+		while(!q.isEmpty()) {
+			int count = q.size();
+			// Printing each level
+			for(int i = 0; i < count; i++) {
+				Node current = q.poll();
+				System.out.print(current.data +" ");
+			
+				if(current.left != null) {
+					q.add(current.left);
+				}
+				if(current.right != null) {
+					q.add(current.right);
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	// Level order traversal (printing each nodes right to left)
+	public static void levelOrder4(Node root) {
+		
+		if(root == null) {
+			return;
+		}
+		
+		Queue<Node> q = new LinkedList<Node>();
+		
+		q.add(root);
+		while(!q.isEmpty()) {
+			Node current = q.poll();
+			System.out.print(current.data +" ");
+			
+			// change only the order of this 'if' condition i.e. adding right node first
+			if(current.right != null) {
+				q.add(current.right);
+			}
+			if(current.left != null) {
+				q.add(current.left);
+			}
+			
+		}
+	}
+	
+	public static void leftView(Node root) {
+		
+		if(root == null) {
+			return;
+		}
+		
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(root);
+		
+		while(!q.isEmpty()) {
+			// Printing only one element for each level
+			int count = q.size();
+			for(int i = 0; i < count; i++) {
+				Node current = q.poll();
+				if(i == 0) { // for right view, change i = count-1
+					System.out.print(current.data +" ");
+				}
+				
+				if(current.left != null) {
+					q.add(current.left);
+				}
+				if(current.right != null) {
+					q.add(current.right);
+				}
+			}
+		}
+	}
+	
 	
     /*
     	Example Tree:
@@ -136,6 +329,7 @@ public class BinaryTree {
 		root.right = new Node(30);
 		root.left.left = new Node(40);
 		root.right.left =  new Node(50);
+//		root.right.left.right =  new Node(777);
 		root.right.right = new Node(60);
 		
 		System.out.print("Inorder Traversal : ");
@@ -151,8 +345,27 @@ public class BinaryTree {
 		System.out.print("\nPostorder Traversal : ");
 		postOrder(root);
 		System.out.print("\nPostorder (Without Recursion): ");
-		postorderWithoutRecursion(root); 
-
+		postorderWithoutRecursion(root);
+		
+		System.out.print("\n\nHeight of the Tree: "+ heightOfTree(root));
+		System.out.print("\nNodes at distance k: ");
+		printNodes(root, 2);
+		
+		System.out.print("\nBreadth First/Level Order: ");
+		breadthFirst(root);
+		
+		System.out.println("\nSize of the tree: "+ size(root));
+		System.out.println("Maximum of the tree: "+ maximum(root));
+		
+		System.out.println("\nLevel Order 2 (Printing level by level): ");
+		levelOrder2(root);
+		System.out.println("\nLevel Order 3 (Printing level by level): ");
+		levelOrder3(root);
+		System.out.println("Level Order 4 (Printing right to left): ");
+		levelOrder4(root);
+		
+		System.out.print("\n\nLeft View : ");
+		leftView(root);
 
 	}
 

@@ -27,7 +27,7 @@ public class Queue {
 	
 		
 	// Printing the Queue
-	void printQueue() {
+	public void printQueue() {
 		Node current = front;
 		while(current != null) {
 			System.out.print(current.data +" ");
@@ -37,13 +37,13 @@ public class Queue {
 	}
 	
 	// Checking if the Queue is empty or not
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		return size == 0;
 		// OR front == null
 	}
 	
 	// Adding element at the rear of the Queue
-	void enqueue(int data) {
+	public void enqueue(int data) {
 		Node newNode = new Node(data);
 		if(size == 0) {
 			front = newNode;
@@ -57,7 +57,7 @@ public class Queue {
 	}
 	
 	// Removing element from the front of the Queue
-	int dequeue() {
+	public int dequeue() {
 		int removed = -1;
 		if(isEmpty()) {
 			System.out.println("Queue is empty");
@@ -72,7 +72,7 @@ public class Queue {
 	
 
 	// Getting the front element of the Queue
-	int getFront() {
+	public int getFront() {
 		if(size == 0) {
 			System.out.println("Queue is empty");
 			return -1;
@@ -82,7 +82,7 @@ public class Queue {
 	}
 	
 	// Getting the rear element of the Queue
-	int getRear() {
+	public int getRear() {
 		if(size == 0) {
 			System.out.println("Queue is empty");
 			return -1;
@@ -92,7 +92,7 @@ public class Queue {
 	}
 	
 	// Creating a new Queue by copying from the original Queue
-	Queue copyQueue(Queue oldQueue) {
+	public Queue copyQueue(Queue oldQueue) {
 		
 		Node current = oldQueue.front;
 		Queue newQueue = new Queue();
@@ -106,7 +106,7 @@ public class Queue {
 	
 	// Getting the Queue in reverse order using Stack
 	// affects the original Queue
-	void reverseQueue(Queue passedQueue) {
+	public void reverseQueue(Queue passedQueue) {
 		
 		Stack tempStack = new Stack();
 		
@@ -125,7 +125,7 @@ public class Queue {
 	
 	// Getting the Queue in reverse order using Array
 	// does not affect the original Queue
-	Queue reverseQueue2(Queue oldQueue) {
+	public Queue reverseQueue2(Queue oldQueue) {
 		
 		Queue newQueue = new Queue();
 		int[] arr = new int[oldQueue.size];
@@ -147,7 +147,7 @@ public class Queue {
 		return newQueue;
 	}
 	
-	int peek() {
+	public int peek() {
 		if(isEmpty()) {
 			System.out.println("Queue is empty.");
 			return -1;

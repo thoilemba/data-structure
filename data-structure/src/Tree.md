@@ -39,4 +39,4 @@ Each **node** in the tree store data and references to other nodes (its children
 
 **Height (Depth)**: The height (or depth) of a tree is the height of the root node or the depth of the deepest node (i.e. maximum level of any node in the tree).
 
-**Visiting**: When you’ve iterated or traversed to a specific node programmatically, accessing value or checking value of the current node is called visiting.
+**Visiting**: When we’ve iterated or traversed to a specific node programmatically, accessing value or checking value of the current node is called visiting.
