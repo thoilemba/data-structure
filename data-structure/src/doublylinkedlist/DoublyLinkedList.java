@@ -1,6 +1,5 @@
 package doublylinkedlist;
 
-
 class Node {
 	Node previous;
 	int data;
@@ -73,31 +72,30 @@ public class DoublyLinkedList {
 		}
 	}
 	
-	// Adding a node at specific index
-	void add(int index, int data) throws IndexOutOfBoundsException{
-		if(index < 0) {
-			System.out.println("Negative Index provided");
-			throw new IndexOutOfBoundsException("Given negative index");
+	// Adding a data at a specific index
+	void add(int data, int index) {
+		
+		if(index < 0 ||index > size()) {
+			throw new IndexOutOfBoundsException("Index out of bound for index "+index);
 		}
 		
-		try {
-			if(index == 0) {
-				addFirst(data);
-			}else {
-				Node newNode = new Node(data);
-				Node current = head;
-				int count = 0;
-				while(count < index-1) {
-					current = current.next;
-					count++;
-				}
-				current.next.previous = newNode;
-				newNode.next = current.next;
-				current.next = newNode;
-				newNode.previous = current;
+		Node newNode = new Node(data);
+		
+		if(index == 0) {
+			addFirst(data);
+		}else if(index == size()) {
+			append(data);
+		}else {
+			Node current = head;
+			int count = 0;
+			while(count < index-1) {
+				current = current.next;
+				count++;
 			}
-		}catch(Exception e) {
-			throw new IndexOutOfBoundsException();
+			current.next.previous = newNode;
+			newNode.next = current.next;
+			newNode.previous = current;
+			current.next = newNode;
 		}
 	}
 	
@@ -256,7 +254,8 @@ public class DoublyLinkedList {
 	public static void main(String[] args) {
 		
 		DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
-		
+		// Comment all these lines below
+		// Then start un-commenting line by line and run to check each output
 		
 		doublyLinkedList.append(10);
 		doublyLinkedList.append(20);
@@ -275,7 +274,7 @@ public class DoublyLinkedList {
 		System.out.print("Adding element using addFirst() : ");
 		doublyLinkedList.printLinkedList();
 		
-		doublyLinkedList.add(3, 25);
+		doublyLinkedList.add(25, 3);
 		System.out.print("Adding element using add(index) : ");
 		doublyLinkedList.printLinkedList();
 		
